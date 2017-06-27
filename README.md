@@ -52,7 +52,10 @@ Normally you get to how to organize components when you create an app.  For this
 > This will be important for the next unit on testing, where you'll test each of those 4 components using a different strategy.
 
 ## Day 2:
-Add State.
+Add State. At this point you will have all the stores implemented, using an in memory store.
+
+## Day 3
+Hook up the inbox to use an external API. Use https://github.com/gSchool/hypermedia-api-server
 
 ## Stories
 
