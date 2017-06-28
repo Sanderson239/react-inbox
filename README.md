@@ -57,6 +57,23 @@ Add State. At this point you will have all the stores implemented, using an in m
 ## Day 3
 Hook up the inbox to use an external API. Use https://github.com/gSchool/hypermedia-api-server
 
+See: https://learn.galvanize.com/cohorts/201/units/2418/content_files/57696 for specs
+
+## Add Routing:
+https://learn.galvanize.com/cohorts/201/units/2417/content_files/57728
+
+Create the following routes:
+
+`/` - index
+`/messages/:id` - will auto-expand only that message
+`/compose` - will show the compose view
+
+## Add Testing:
+https://learn.galvanize.com/cohorts/201/units/2608/content_files/57706
+
+and 
+https://learn.galvanize.com/cohorts/201/units/2610/content_files/57719
+
 ## Stories
 
 There are a lot of stories here, which is intentional.  The idea is for you to become _fluent_ with these basic concepts before moving on to the more complex aspects of React.
