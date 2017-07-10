@@ -14,8 +14,6 @@ For this app you'll be given a complete style guide that provides the HTML and C
 - Or you can download and run it locally https://github.com/gSchool/inbox-styleguide
 - You can also find a JSON file with seed data there as well
 
-## Day 1:
-Implement the UI without state.
 ## Create the App
 
 1. Create the app using [create-react-app](https://github.com/facebookincubator/create-react-app)
@@ -51,28 +49,6 @@ Normally you get to how to organize components when you create an app.  For this
 
 > This will be important for the next unit on testing, where you'll test each of those 4 components using a different strategy.
 
-## Day 2:
-Add State. At this point you will have all the stores implemented, using an in memory store.
-
-## Day 3
-Hook up the inbox to use an external API. Use https://github.com/gSchool/hypermedia-api-server
-
-See: https://learn.galvanize.com/cohorts/201/units/2418/content_files/57696 for specs
-
-## Add Routing:
-https://learn.galvanize.com/cohorts/201/units/2417/content_files/57728
-
-Create the following routes:
-
-`/` - index
-`/messages/:id` - will auto-expand only that message
-`/compose` - will show the compose view
-
-## Add Testing:
-https://learn.galvanize.com/cohorts/201/units/2608/content_files/57706
-
-and 
-https://learn.galvanize.com/cohorts/201/units/2610/content_files/57719
 
 ## Stories
 
@@ -224,3 +200,22 @@ NOTE: the "Select All" button must stay in sync at all times.
 ### Select All Button State
 
 Users should not be able to click on toolbar items when no messages are selected
+
+# Phases of Implementation:
+See the  above stories for the first two phases. 
+
+## Phase 1: Implement the UI without use of state.
+Focus on just the static site. The checkboxes, etc should still be clickable, they just won't do anything. 
+
+## Phase 2: Add real interactivity to yout site.
+Add State. At this point you will have all the stories implemented, using an in mock json data.
+
+## Phase 3: Intergare with an external API. 
+TBD
+
+## Phase 4: Add  Routing:
+TBD
+
+## Phase 5: Add Testing
+TBD
+
