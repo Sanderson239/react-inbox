@@ -54,7 +54,7 @@ Normally you get to how to organize components when you create an app.  For this
 
 There are a lot of stories here, which is intentional.  The idea is for you to become _fluent_ with these basic concepts before moving on to the more complex aspects of React.
 
-![alt text](https://s3-us-west-2.amazonaws.com/learn.galvanize.com/learn-images/gSchool/react-curriculum/units/images/inbox/inbox.png "")
+![](/images/inbox/inbox.png)
 
 
 ### Message Display
@@ -202,20 +202,22 @@ NOTE: the "Select All" button must stay in sync at all times.
 Users should not be able to click on toolbar items when no messages are selected
 
 # Phases of Implementation:
-See the  above stories for the first two phases. 
+See the  above stories for the first two phases.
 
 ## Phase 1: Implement the UI without use of state.
-Focus on just the static site. The checkboxes, etc should still be clickable, they just won't do anything. 
+Focus on just the static site. The checkboxes, etc should still be clickable, they just won't do anything.
 
-## Phase 2: Add real interactivity to yout site.
+## Phase 2: Add real interactivity to your site.
 Add State. At this point you will have all the stories implemented, using an in mock json data.
 
-## Phase 3: Intergare with an external API. 
-TBD
+## Phase 3: Intergate with an external API.
+[stories](./api-integration-stories.md)
+
+## Phase 4: Use Redux for state management
+[stories](./redux-stories.md)
 
 ## Phase 4: Add  Routing:
-TBD
+[stories](./react-router-stories.md)
 
 ## Phase 5: Add Testing
-TBD
-
+[stories](./testing-stories.md)
