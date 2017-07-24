@@ -48,9 +48,7 @@ class Compose extends Component {
   }
 }
 
-// maybe implement this later
-// value={this.state.subject} onChange={(event) => this.updateSubject(event)}
-// value={this.state.body} onChange={(event) => this.updateBody(event)}
+
 
 const mapStateToProps = state => {
 	const compose = state.compose;

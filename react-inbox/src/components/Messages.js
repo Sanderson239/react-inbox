@@ -6,8 +6,6 @@ import { fetchMessages } from '../actions'
 import { bindActionCreators } from 'redux'
 
 
-
-
 class Messages extends Component {
 
   componentDidMount() {
