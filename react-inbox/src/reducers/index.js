@@ -13,6 +13,7 @@ function messages(state = { ids:[], messagesById:{} }, action) {
         }),
         messagesById: messages.reduce((result, message) => {
           result[message.id] = message
+          console.log(result);
           return result
         }, {})
       }
@@ -90,7 +91,7 @@ function messages(state = { ids:[], messagesById:{} }, action) {
 	}
 }
 
-    export default combineReducers({
-      messages,
-      compose
-    })
+export default combineReducers({
+  messages,
+  compose
+})

@@ -13,6 +13,7 @@ class Message extends Component {
 
 
   render() {
+    console.log(this.props);
     const { body, id, read, starred, selected, labels, subject, toggleProperty, toggleSelected } = this.props
     const messageRead = read ? 'read' : 'unread';
     const messageStarred = starred ? 'fa-star' : 'fa-star-o';
@@ -47,10 +48,6 @@ class Message extends Component {
         </div>
         </div>
         </Router>
-
-
-
-
       );
     }
   }
@@ -60,9 +57,11 @@ class Message extends Component {
 
   const mapStateToProps = (state, ownProps) => {
     const message = state.messages.messagesById[ownProps.messageId]
+    //console.log(message);
     const { body, id, read, starred, selected, labels, subject } = message
+    console.log('message', message['foo'], message);
     return {
-      body,
+      messageBody: message.body,
       id,
       read,
       starred,

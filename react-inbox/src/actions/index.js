@@ -4,16 +4,19 @@ export const TOGGLE_SELECTED = 'TOGGLE_SELECTED'
 export const COMPOSE_MESSAGE = 'COMPOSE_MESSAGE'
 export const RENDER_COMPOSE = 'RENDER_COMPOSE'
 export const DELETE_MESSAGE = 'DELETE_MESSAGE'
+export const FETCH_BODY = 'FETCH_BODY'
+
 
 
 export function fetchMessages() {
   return async (dispatch, getState, { Api }) => {
     const json = await Api.fetchMessages();
+    console.log('this', json);
 
     json.forEach(message => {
       Api.fetchMessageById(message.id)
       .then(body => {
-        message.body = body;
+        message['foo'] = 'bar';
       })
     })
     const state = getState();
@@ -25,6 +28,17 @@ export function fetchMessages() {
     }
   }
 }
+
+// export function fetchMessageBody(id) {
+//   return async (dispatch, getState, { Api }) => {
+//     // const json = await Api.fetchMessageById(id)
+//     .then(body => {
+//       return body
+//     })
+//
+//     const state = getState
+//   }
+// }
 
 
 
