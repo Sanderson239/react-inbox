@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Api from '../utils/Api'
+import Api from '../../utils/Api'
 import { bindActionCreators } from "redux";
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { toggleProperty, toggleSelected } from '../actions'
-import Labels from './Labels';
-import MessageBody from './MessageBody';
+import { toggleProperty, toggleSelected } from '../../actions'
+import Labels from '../Labels';
+import MessageBody from '../MessageBody';
 
 
 
@@ -13,13 +13,11 @@ class Message extends Component {
 
 
   render() {
-    console.log(this.props);
     const { body, id, read, starred, selected, labels, subject, toggleProperty, toggleSelected } = this.props
     const messageRead = read ? 'read' : 'unread';
     const messageStarred = starred ? 'fa-star' : 'fa-star-o';
     const messageSelected = selected ? 'selected' : '';
       return (
-        <Router>
         <div>
         <div className={`row message ${messageRead} ${messageSelected}`}>
           <div className="col-xs-1">
@@ -28,13 +26,12 @@ class Message extends Component {
                 <input type="checkbox" checked={ selected } onClick={() => toggleSelected(id, selected)}/>
               </div>
               <div className="col-xs-2">
-                <i className={`star fa ${messageStarred}`} onClick={() => toggleProperty(id,'starred', 'PATCH', 'star', starred)}></i>
+                <i className={`star fa ${messageStarred}`} onClick={() => toggleProperty([id],'starred', 'PATCH', 'star', starred)}></i>
               </div>
             </div>
           </div>
           <div className="col-xs-11" onClick={(event) => {
-              // this.renderMessageBody(event, id)
-              toggleProperty(id, 'read', 'PATCH', 'read', false)
+              toggleProperty([id], 'read', 'PATCH', 'read', false)
             }
           }>
           {labels.map(label => <Labels label={label} key={label} />)}
@@ -44,10 +41,9 @@ class Message extends Component {
           </div>
           </div>
           <div>
-          <Route exact path={`/messages/${id}`} render={props => <MessageBody body={id} {...props} />} />
+          <Route exact path={`/messages/${id}`} render={props => <MessageBody id={id} {...props} />} />
         </div>
         </div>
-        </Router>
       );
     }
   }
@@ -57,9 +53,7 @@ class Message extends Component {
 
   const mapStateToProps = (state, ownProps) => {
     const message = state.messages.messagesById[ownProps.messageId]
-    //console.log(message);
     const { body, id, read, starred, selected, labels, subject } = message
-    console.log('message', message['foo'], message);
     return {
       messageBody: message.body,
       id,

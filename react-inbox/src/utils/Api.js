@@ -20,8 +20,8 @@ export default class Api {
   			});
       }
 
-  static updateMessages(id, property, method, command, someBoolean) {
-    fetch(`http://localhost:8181/api/messages`, {method: method, body: JSON.stringify({messageIds: [id], command: command, [command]: !someBoolean}), headers: new Headers({'Content-Type': 'application/json'}) })
+  static updateMessages(ids, property, method, command, someBoolean) {
+    fetch(`http://localhost:8181/api/messages`, {method: method, body: JSON.stringify({messageIds: ids, command: command, [command]: !someBoolean}), headers: new Headers({'Content-Type': 'application/json'}) })
    .then(response => {
      return response;
    })
@@ -50,8 +50,8 @@ static newMessage(subject, body) {
  })
 }
 
-static deleteMessage(id) {
-  fetch(`http://localhost:8181/api/messages`, {method: 'PATCH', body: JSON.stringify({messageIds: [id], command: 'delete'}), headers: new Headers({'Content-Type': 'application/json'}) })
+static deleteMessage(ids) {
+  fetch(`http://localhost:8181/api/messages`, {method: 'PATCH', body: JSON.stringify({messageIds: ids, command: 'delete'}), headers: new Headers({'Content-Type': 'application/json'}) })
  .then(response => {
    return response;
  })

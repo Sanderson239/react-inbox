@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Message from './Message';
+import Message from '../Message/Message';
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import { fetchMessages } from '../actions'
+import { fetchMessages } from '../../actions'
 import { bindActionCreators } from 'redux'
 
 
@@ -17,7 +17,6 @@ class Messages extends Component {
   render() {
 
     const { messageIds } = this.props;
-    console.log(this.props);
     return (
       <div>
       { messageIds.map(messageId => <Message key={ messageId } messageId={ messageId } location={ this.props.location } history={ this.props.history } />) }

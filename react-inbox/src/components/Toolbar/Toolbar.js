@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchMessages, toggleProperty, toggleSelected, changeLabel, deleteMessage } from '../actions';
+import { fetchMessages, toggleProperty, toggleSelected, changeLabel, deleteMessage } from '../../actions';
 
 class Toolbar extends Component {
 
@@ -60,17 +60,13 @@ render() {
           </button>
 
           <button className="btn btn-default" onClick={() => {
-            messageIds.forEach(id => {
-            if (messagesById[id].selected) this.props.toggleProperty(id, 'read', 'PATCH', 'read', false)
-            })
-          }}>
+            this.props.toggleProperty(messageIds.filter(id => messagesById[id].selected), 'read', 'PATCH', 'read', false)
+            }}>
             Mark As Read
           </button>
 
           <button className="btn btn-default" onClick={() => {
-            messageIds.forEach(id => {
-            if (messagesById[id].selected) this.props.toggleProperty(id, 'read', 'PATCH', 'read', true)
-            })
+            this.props.toggleProperty(messageIds.filter(id => messagesById[id].selected), 'read', 'PATCH', 'read', true)
           }}>
             Mark As Unread
           </button>
@@ -98,10 +94,9 @@ render() {
           </select>
 
           <button className="btn btn-default" onClick={() => {
-            messageIds.forEach(id => {
-            if (messagesById[id].selected) this.props.deleteMessage(id)
-            })
-          }}>
+          this.props.deleteMessage(messageIds.filter(id => messagesById[id].selected))
+        }
+          }>
             <i className="fa fa-trash-o"></i>
           </button>
         </div>

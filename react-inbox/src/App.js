@@ -4,8 +4,8 @@ import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import { bindActionCreators } from "redux";
 import { connect } from 'react-redux'
-import Toolbar from './components/Toolbar';
-import Messages from './components//Messages'
+import Toolbar from './components/Toolbar/Toolbar';
+import Messages from './components/Messages/Messages'
 import Compose from './components//Compose.js';
 
 

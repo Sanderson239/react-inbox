@@ -11,16 +11,9 @@ export const FETCH_BODY = 'FETCH_BODY'
 export function fetchMessages() {
   return async (dispatch, getState, { Api }) => {
     const json = await Api.fetchMessages();
-    console.log('this', json);
-
-    json.forEach(message => {
-      Api.fetchMessageById(message.id)
-      .then(body => {
-        message['foo'] = 'bar';
-      })
-    })
     const state = getState();
     if (!state.messages.ids.length) {
+      console.log(json);
       await dispatch({
         type: MESSAGES_RETRIEVED,
         messages: json
@@ -29,29 +22,35 @@ export function fetchMessages() {
   }
 }
 
-// export function fetchMessageBody(id) {
-//   return async (dispatch, getState, { Api }) => {
-//     // const json = await Api.fetchMessageById(id)
-//     .then(body => {
-//       return body
-//     })
-//
-//     const state = getState
-//   }
-// }
+export function fetchMessageBody(id) {
+  return async (dispatch, getState, { Api }) => {
+    const messageBody = await Api.fetchMessageById(id)
+    .then(body => {
+      return body
+    })
+
+    await dispatch({
+      type: FETCH_BODY,
+      messageBody,
+      id
+    })
+  }
+}
 
 
 
-export function toggleProperty(id, property, method, command, someBoolean) {
+export function toggleProperty(ids, property, method, command, someBoolean) {
   return async (dispatch, getState, { Api }) => {
     const state = getState();
-    await Api.updateMessages(id, property, method, command, someBoolean);
+    await Api.updateMessages(ids, property, method, command, someBoolean);
+    const currentMessages = Object.assign({}, state.messages.messagesById);
+    ids.forEach(id => {
+      currentMessages[id][property] = !someBoolean;
+    })
 
     await dispatch({
       type: TOGGLE_ATTRIBUTE,
-      id,
-      property,
-      someBoolean
+      currentMessages,
     })
   }
 }
@@ -113,16 +112,21 @@ export function submitForm(form) {
 }
 
 
-export function deleteMessage(id) {
+export function deleteMessage(deletedMessages) {
   return async (dispatch, getState, { Api }) => {
     const state = getState();
-    await Api.deleteMessage(id);
-    const json = await Api.fetchMessages();
+    await Api.deleteMessage(deletedMessages);
+    const currentMessageIds = state.messages.ids.filter(id => deletedMessages.indexOf(id) === -1)
+    const currentMessages = Object.assign({}, state.messages.messagesById);
+    deletedMessages.forEach(id => {
+      delete currentMessages[id]
+    })
 
 
     await dispatch({
       type: DELETE_MESSAGE,
-      newMessages: json
+      currentMessageIds,
+      currentMessages
     })
   }
 }

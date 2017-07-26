@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { MESSAGES_RETRIEVED, TOGGLE_ATTRIBUTE, TOGGLE_SELECTED, CHANGE_LABEL, COMPOSE_MESSAGE, RENDER_COMPOSE, DELETE_MESSAGE } from '../actions'
+import { MESSAGES_RETRIEVED, FETCH_BODY, TOGGLE_ATTRIBUTE, TOGGLE_SELECTED, CHANGE_LABEL, COMPOSE_MESSAGE, RENDER_COMPOSE, DELETE_MESSAGE } from '../actions'
 
 
 
@@ -13,21 +13,27 @@ function messages(state = { ids:[], messagesById:{} }, action) {
         }),
         messagesById: messages.reduce((result, message) => {
           result[message.id] = message
-          console.log(result);
           return result
         }, {})
       }
 
-      case TOGGLE_ATTRIBUTE:
+      case FETCH_BODY:
+        const { messageBody } = action
         return {
         ...state,
         messagesById: {
           ...state.messagesById,
           [action.id]: {
             ...state.messagesById[action.id],
-            [action.property]: !action.someBoolean
+            body: messageBody
+            }
           }
-        }
+        };
+
+      case TOGGLE_ATTRIBUTE:
+        return {
+        ...state,
+        messagesById: action.currentMessages
       };
 
       case TOGGLE_SELECTED:
@@ -56,15 +62,10 @@ function messages(state = { ids:[], messagesById:{} }, action) {
 
 
         case DELETE_MESSAGE:
-          const { newMessages } = action
+          const { currentMessageIds, currentMessages } = action
           return {
-            ids: newMessages.map((message) => {
-              return message.id;
-            }),
-            messagesById: newMessages.reduce((result, message) => {
-              result[message.id] = message
-              return result
-            }, {})
+            ids: currentMessageIds,
+            messagesById: currentMessages
           }
 
         case COMPOSE_MESSAGE:
@@ -82,16 +83,8 @@ function messages(state = { ids:[], messagesById:{} }, action) {
       }
     }
 
-  function compose(state = false, action) {
-	   switch (action.type) {
 
-
-		default:
-			return state;
-	}
-}
 
 export default combineReducers({
   messages,
-  compose
 })
