@@ -6,8 +6,8 @@ import 'font-awesome/css/font-awesome.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
-import store from './store'
-import { Provider } from 'react-redux'
+import store from './store';
+import { Provider } from 'react-redux';
 
 
 ReactDOM.render(

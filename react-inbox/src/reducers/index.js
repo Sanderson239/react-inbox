@@ -7,6 +7,11 @@ function messages(state = { ids:[], messagesById:{} }, action) {
   switch (action.type) {
     case MESSAGES_RETRIEVED:
       const { messages } = action
+      console.log(messages);
+      console.log(messages.reduce((result, message) => {
+        result[message.id] = message
+        return result
+      }, {}));
       return {
         ids: messages.map((message) => {
           return message.id;

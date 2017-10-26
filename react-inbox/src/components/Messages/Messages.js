@@ -17,6 +17,7 @@ class Messages extends Component {
   render() {
 
     const { messageIds } = this.props;
+    console.log(this.props);
     return (
       <div>
       { messageIds.map(messageId => <Message key={ messageId } messageId={ messageId } location={ this.props.location } history={ this.props.history } />) }

@@ -11,7 +11,6 @@ import MessageBody from '../MessageBody';
 
 class Message extends Component {
 
-
   render() {
     const { body, id, read, starred, selected, labels, subject, toggleProperty, toggleSelected } = this.props
     const messageRead = read ? 'read' : 'unread';
